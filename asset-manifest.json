@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/r3f-swaying-grass/static/css/main.c67338bd.chunk.css",
+    "main.js": "/r3f-swaying-grass/static/js/main.d2d579f5.chunk.js",
+    "main.js.map": "/r3f-swaying-grass/static/js/main.d2d579f5.chunk.js.map",
+    "runtime-main.js": "/r3f-swaying-grass/static/js/runtime-main.f1673def.js",
+    "runtime-main.js.map": "/r3f-swaying-grass/static/js/runtime-main.f1673def.js.map",
+    "static/js/2.fb2d3de0.chunk.js": "/r3f-swaying-grass/static/js/2.fb2d3de0.chunk.js",
+    "static/js/2.fb2d3de0.chunk.js.map": "/r3f-swaying-grass/static/js/2.fb2d3de0.chunk.js.map",
+    "static/js/3.03b4d874.chunk.js": "/r3f-swaying-grass/static/js/3.03b4d874.chunk.js",
+    "static/js/3.03b4d874.chunk.js.map": "/r3f-swaying-grass/static/js/3.03b4d874.chunk.js.map",
+    "index.html": "/r3f-swaying-grass/index.html",
+    "static/css/main.c67338bd.chunk.css.map": "/r3f-swaying-grass/static/css/main.c67338bd.chunk.css.map",
+    "static/js/2.fb2d3de0.chunk.js.LICENSE.txt": "/r3f-swaying-grass/static/js/2.fb2d3de0.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f1673def.js",
+    "static/js/2.fb2d3de0.chunk.js",
+    "static/css/main.c67338bd.chunk.css",
+    "static/js/main.d2d579f5.chunk.js"
+  ]
+}
