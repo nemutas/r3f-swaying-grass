@@ -26,6 +26,7 @@ export const SwayingGrass: VFC = () => {
 	const model = useFBX(getPublicPath('/assets/models/bunny.fbx'))
 	const samplingGeometry = (model.children[0] as THREE.Mesh).geometry
 	samplingGeometry.applyMatrix4(new THREE.Matrix4().makeScale(0.2, 0.2, 0.2))
+	;(model.children[0] as THREE.Mesh).updateMatrix()
 
 	// --------------------------------------------
 	// create sampler
@@ -84,7 +85,7 @@ export const SwayingGrass: VFC = () => {
 
 	return (
 		<>
-			<mesh geometry={samplingGeometry} scale={0.2}>
+			<mesh geometry={samplingGeometry}>
 				<meshBasicMaterial color="#000" />
 			</mesh>
 			<instancedMesh ref={meshRef} args={[undefined, undefined, amount]}>
