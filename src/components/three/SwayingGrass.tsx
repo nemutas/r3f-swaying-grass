@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, VFC } from 'react';
 import * as THREE from 'three';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 import { MeshSurfaceSampler } from 'three/examples/jsm/math/MeshSurfaceSampler';
-import { useFBX, useGLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { cnoise31 } from '../../modules/glsl';
 import { GUIController } from '../../modules/gui';
