@@ -26,16 +26,18 @@ export const SwayingGrass: VFC = () => {
 	const model = useFBX(getPublicPath('/assets/models/bunny.fbx'))
 	const samplingGeometry = (model.children[0] as THREE.Mesh).geometry
 	samplingGeometry.applyMatrix4(new THREE.Matrix4().makeScale(0.2, 0.2, 0.2))
-	;(model.children[0] as THREE.Mesh).updateMatrix()
 
 	// --------------------------------------------
 	// create sampler
 
-	const sampler = useMemo(() => {
-		const samplingMesh = new THREE.Mesh(samplingGeometry, new THREE.MeshBasicMaterial())
-		const sampler = new MeshSurfaceSampler(samplingMesh).build()
-		return sampler
-	}, [samplingGeometry])
+	const samplingMesh = new THREE.Mesh(samplingGeometry, new THREE.MeshBasicMaterial())
+	const sampler = new MeshSurfaceSampler(samplingMesh).build()
+
+	// const sampler = useMemo(() => {
+	// 	const samplingMesh = new THREE.Mesh(samplingGeometry, new THREE.MeshBasicMaterial())
+	// 	const sampler = new MeshSurfaceSampler(samplingMesh).build()
+	// 	return sampler
+	// }, [samplingGeometry])
 
 	// --------------------------------------------
 	// initialize matrix
@@ -84,7 +86,7 @@ export const SwayingGrass: VFC = () => {
 	})
 
 	return (
-		<>
+		<group>
 			<mesh geometry={samplingGeometry}>
 				<meshBasicMaterial color="#000" />
 			</mesh>
@@ -92,7 +94,7 @@ export const SwayingGrass: VFC = () => {
 				<coneGeometry args={[0.05, 1, 2, 20, false, 0, Math.PI]} />
 				<shaderMaterial args={[shader]} side={THREE.DoubleSide} />
 			</instancedMesh>
-		</>
+		</group>
 	)
 }
 
