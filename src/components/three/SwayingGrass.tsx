@@ -84,7 +84,7 @@ export const SwayingGrass: VFC = () => {
 
 	return (
 		<>
-			<mesh geometry={samplingGeometry}>
+			<mesh geometry={samplingGeometry} scale={0.2}>
 				<meshBasicMaterial color="#000" />
 			</mesh>
 			<instancedMesh ref={meshRef} args={[undefined, undefined, amount]}>
