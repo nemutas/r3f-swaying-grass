@@ -1,12 +1,22 @@
 import { useCallback, useEffect, useMemo, useRef, VFC } from 'react';
 import * as THREE from 'three';
+import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 import { MeshSurfaceSampler } from 'three/examples/jsm/math/MeshSurfaceSampler';
-import { useFBX } from '@react-three/drei';
+import { useFBX, useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { cnoise31 } from '../../modules/glsl';
 import { GUIController } from '../../modules/gui';
 import { datas } from '../../modules/store';
 import { getPublicPath } from '../../modules/utils';
+
+const ModelPath = getPublicPath('/assets/models/rabbit.glb')
+useGLTF.preload(ModelPath)
+
+type GLTFResult = GLTF & {
+	nodes: {
+		Rabbit: THREE.Mesh
+	}
+}
 
 export const SwayingGrass: VFC = () => {
 	const meshRef = useRef<THREE.InstancedMesh>(null)
@@ -23,21 +33,17 @@ export const SwayingGrass: VFC = () => {
 	// const samplingGeometry = useMemo(() => new THREE.PlaneGeometry(20, 20), [])
 	// const samplingGeometry = useMemo(() => new THREE.IcosahedronGeometry(10, 10), [])
 	// const samplingGeometry = useMemo(() => new THREE.TorusKnotGeometry(8, 1.5, 200, 20, 3, 5), [])
-	const model = useFBX(getPublicPath('/assets/models/bunny.fbx'))
-	const samplingGeometry = (model.children[0] as THREE.Mesh).geometry
-	samplingGeometry.applyMatrix4(new THREE.Matrix4().makeScale(0.2, 0.2, 0.2))
+	const { nodes } = useGLTF(ModelPath) as GLTFResult
+	const samplingGeometry = nodes.Rabbit.geometry
 
 	// --------------------------------------------
 	// create sampler
 
-	const samplingMesh = new THREE.Mesh(samplingGeometry, new THREE.MeshBasicMaterial())
-	const sampler = new MeshSurfaceSampler(samplingMesh).build()
-
-	// const sampler = useMemo(() => {
-	// 	const samplingMesh = new THREE.Mesh(samplingGeometry, new THREE.MeshBasicMaterial())
-	// 	const sampler = new MeshSurfaceSampler(samplingMesh).build()
-	// 	return sampler
-	// }, [samplingGeometry])
+	const sampler = useMemo(() => {
+		const samplingMesh = new THREE.Mesh(samplingGeometry, new THREE.MeshBasicMaterial())
+		const sampler = new MeshSurfaceSampler(samplingMesh).build()
+		return sampler
+	}, [samplingGeometry])
 
 	// --------------------------------------------
 	// initialize matrix
@@ -91,7 +97,7 @@ export const SwayingGrass: VFC = () => {
 				<meshBasicMaterial color="#000" />
 			</mesh>
 			<instancedMesh ref={meshRef} args={[undefined, undefined, amount]}>
-				<coneGeometry args={[0.05, 1, 2, 20, false, 0, Math.PI]} />
+				<coneGeometry args={[0.05, 1.0, 2, 20, false, 0, Math.PI]} />
 				<shaderMaterial args={[shader]} side={THREE.DoubleSide} />
 			</instancedMesh>
 		</group>
